@@ -25,14 +25,14 @@ def reward_function(params):
 
     # Penalize if the car is off the track
     if not is_offtrack:
-        reward = 1.0
+        reward += 1.0
     else:
         reward = 1e-3
 
 
     # Penalize if the car is reversed
     if not is_reversed:
-        reward = 1.0
+        reward += 1.0
     else:
         reward = 1e-3
 
@@ -42,7 +42,7 @@ def reward_function(params):
     
     #Reward higher if the car stays inside the track borders
     if distance_from_border >= 0.05:
-        reward = 1.0
+        reward += 10.0
     else:
         reward = 1e-3   #low reward if too close to the border of goes off track
 
@@ -93,9 +93,9 @@ def reward_function(params):
     if distance_from_center <= marker_1:
         reward += 1.0
     elif distance_from_center <= marker_2:
-        reward *= 0.5
+        reward += 0.5
     elif distance_from_center <= marker_3:
-        reward *= 0.1
+        reward += 0.1
     else:
         reward = 1e-3  # likely crashed/ close to off track
 
